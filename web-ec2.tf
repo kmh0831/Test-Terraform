@@ -33,15 +33,15 @@ resource "aws_instance" "nat_2" {
   }
 }
 
-# 데이터 소스: 기존 IAM 인스턴스 프로필 확인
-data "aws_iam_instance_profile" "existing_profile" {
-  name = "Terraform-IAM"
-}
+# # 데이터 소스: 기존 IAM 인스턴스 프로필 확인
+# data "aws_iam_instance_profile" "existing_profile" {
+#   name = "Terraform-IAM"
+# }
 
-# IAM 인스턴스 프로필이 존재하지 않는 경우에만 새로 생성
-resource "aws_iam_instance_profile" "new_profile" {
-  count = length(data.aws_iam_instance_profile.existing_profile.id) > 0 ? 0 : 1
+# # IAM 인스턴스 프로필이 존재하지 않는 경우에만 새로 생성
+# resource "aws_iam_instance_profile" "new_profile" {
+#   count = length(data.aws_iam_instance_profile.existing_profile.id) > 0 ? 0 : 1
 
-  name = "Terraform-IAM"
-  role = aws_iam_role.codepipeline.name
-}
+#   name = "Terraform-IAM"
+#   role = aws_iam_role.codepipeline.name
+# }
