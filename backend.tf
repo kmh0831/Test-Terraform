@@ -4,7 +4,7 @@ provider "aws" {
 
 # S3 버킷 생성
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "your-terraform-state-bucket"
+  bucket = "terraform-state-bucket-kmhyuk0831"
 
   tags = {
     Name = "Terraform State Bucket"
@@ -52,10 +52,10 @@ resource "aws_dynamodb_table" "terraform_lock" {
 # 백엔드 설정
 terraform {
   backend "s3" {
-    bucket         = aws_s3_bucket.terraform_state.bucket
+    bucket         = "terraform-state-bucket-kmhyuk0831"
     key            = "path/to/your/terraform.tfstate"  # tfstate 파일 경로
     region         = "ap-northeast-2"
-    dynamodb_table = aws_dynamodb_table.terraform_lock.name
+    dynamodb_table = "terraform-lock-table"
     encrypt        = true
   }
 }
