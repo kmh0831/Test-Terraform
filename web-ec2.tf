@@ -45,3 +45,31 @@ resource "aws_instance" "nat_2" {
 #   name = "Terraform-IAM"
 #   role = aws_iam_role.codepipeline.name
 # }
+
+resource "aws_instance" "TEST1" {
+  ami                    = "ami-089cd96a3fed9a2e8" # AWS 리전에 따라 적절한 AMI ID로 변경하세요.
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.private-sub-1.id
+  private_ip             = "10.1.3.100"
+  vpc_security_group_ids = [aws_security_group.allow_http.id]
+  key_name               = aws_key_pair.ec2_key.key_name
+  source_dest_check      = false
+
+  tags = {
+    Name = "TEST1"
+  }
+}
+
+resource "aws_instance" "TEST2" {
+  ami                    = "ami-089cd96a3fed9a2e8" # AWS 리전에 따라 적절한 AMI ID로 변경하세요.
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.private-sub-2.id
+  private_ip             = "10.1.4.100"
+  vpc_security_group_ids = [aws_security_group.allow_http.id]
+  key_name               = aws_key_pair.ec2_key.key_name
+  source_dest_check      = false
+
+  tags = {
+    Name = "TEST2"
+  }
+}
