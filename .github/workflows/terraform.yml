@@ -11,10 +11,6 @@ on:
 env:
   AWS_REGION: ap-northeast-2  # 기본 AWS 지역 설정
 
-permissions:
-  contents: read
-  id-token: write  # GitHub OIDC 토큰을 사용해 AWS에 인증
-
 jobs:
   terraform:
     name: 'Terraform'
